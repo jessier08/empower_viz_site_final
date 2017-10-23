@@ -34,6 +34,7 @@ body{
 #container{
     height:100vh;
     width:100vw;
+    min-width: 1440px;
 }
 #header{
     height:8vh;
@@ -143,7 +144,7 @@ a{
     padding-right:20px;
     font-family:'eames century modern';
     font-size:1.6vh;
-    color: rgb(112,98,89);
+    color: rgb(64,64,64);
     max-width:12vw;
 }
 #network_theme_nav{
@@ -295,6 +296,11 @@ a{
 }
 #theme_navigation a{
     text-decoration: none;
+    color:rgb(64,64,64);
+}
+#theme_navigation a:visited{
+    text-decoration: none;
+    color:rgb(64,64,64);
 }
 .theme_active{
     font-size:3vh;
@@ -585,7 +591,7 @@ a{
 
 .story_box{
     z-index:0;
-    height:90vh;
+    height:95vh;
 }
 .story_image img{
     width:85vw;
@@ -709,4 +715,7 @@ a{
 }
 #story_list img{
     border-radius:50%;
+}
+#link_to_theme{
+    text-decoration: none;
 }
