@@ -1,0 +1,76 @@
+
+<!doctype html>
+<html class="no-js" lang="">
+<head>
+    
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>theme page</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <link href="css/stylesheet.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head> 
+    
+<body>
+    
+    <div id="container">
+        <div id="header">
+            <img id="header_title" src="imgs/header_title.png">
+            <a href="full_network.html"><span class="header_link">see full network</span></a>
+        </div>
+        
+        <div id="left_sidebar">
+            <div class="fadeIn">
+                <p id="headline"></p>
+                <p id="story"></p>
+                <div id="div_quote">
+                    <img src="imgs/quote.png" id="block_quote">
+                    <p id="theme_quote"></p>
+                </div>
+                <p id="quote_attr"></p>
+            </div>
+        </div>
+        
+        <div id="story_visual">
+            
+            <video width="100%;"  autoplay>
+                <source id="video_source" src="" type="video/mp4"/>
+            </video>
+
+        </div>
+        
+ 
+        
+        <div id="right_sidebar">
+            <p id="theme_nav_direction">select theme to see new story</p>
+            
+            <div id="theme_navigation">
+                <a href="/themes.html?theme=athletics"><p><span id="athletics" class="link">athletics</span></p></a>
+                <a href="/themes.html?theme=student"><p><span id="student" class="link">student support</span></p></a>
+                <a href="/themes.html?theme=campus"><p><span id="campus" class="link">campus life</span></p></a>
+                <a href="/themes.html?theme=entre"><p><span id="entre" class="link">entrepreneurship</span></p></a>
+                <a href="/themes.html?theme=research"><p><span id="research" class="link">research</span></p></a>
+                <a href="/themes.html?theme=emerging"><p><span id="emerging" class="link">emerging priorities</span></p></a>
+                <a href="/themes.html?theme=faculty"><p><span id="faculty" class="link">faculty</span></p></a>
+            </div>
+            <div id="story_navigation">
+                <p>more <span id="selected_theme"> </span> stories</p>
+                <div id="story_list">
+                    <!-- <img src="" class="active_story"><br>
+                    <img src="" class="inactive_story"><br>
+                    <img src="" class="inactive_story"><br>
+                    <img src="" class="inactive_story"> -->
+                </div>
+            </div>
+        </div>
+    </div> 
+
+    <script src="./js_subproject/dist/assets/theme.bundle.js"></script>
+   <!-- <script src="http://localhost:9000/assets/theme.bundle.js"></script> -->
+
+</body>
+
+</html>
