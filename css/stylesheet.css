@@ -363,11 +363,6 @@ a{
     float:left;
     position: relative;
 }
-#display_name{
-    font-family: "helvetica";
-    font-size:3.5vh;
-    font-weight: bold;
-}
 #bio{
     display:block;
 }
@@ -664,7 +659,7 @@ a{
     left:60vw;
     top:72vh;
 }
-#toggle{
+#toggle{ 
     font-family:"helvetica neue";
     font-size:1.5vh;
     color: rgba(112,98,89,.4);
@@ -706,6 +701,7 @@ a{
 }
 #display_name, #college, #year{
     font-family:"helvetica";
+    font-size:1.5vh;
 }
 .circleNodes text{
     font-family:"helvetica";

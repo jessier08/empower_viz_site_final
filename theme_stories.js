@@ -35,16 +35,20 @@ var data = [
                 }
             ]
         },
-        {   theme: "athletics",
+        {   theme: "campus",
             stories: [
                 {
                     headline:"Teach a Person to Give",
                     story:"Northeastern students learn the art and science of philanthropy from Rebecca Riccio, whose leadership of the Social Impact Lab teaches strategic philanthropy worldwide.",
+                    theme_quote:"Our goal is to give students a comprehensive toolkit for translating good intentions into effective, financially sustainable strategies for achieving social change.",
+                    quote_attr:"Rebecca Riccio",
                     video:"story_videos/rebecca.mp4"
                 },
                 {
                     headline:"Finding a Voice and Cheering a Team",
                     story: "Max Plansky, a teacher with cerebal palsy, enjoys his role with the Northeastern men's basketball team while benefiting from tools made possible by philanthropy, including a new voice.",
+                    theme_quote:"In 2013, Max became part of Northeastern University’s men’s basketball team. These players welcomed him as their teammate. His life changed — and so did theirs.",
+                    quote_attr:"Michael Plansky, Max's father",
                     video:"story_videos/max_plansky.mp4"
                 },
                 {
@@ -68,7 +72,7 @@ var data = [
                 {
                     headline:"Room to Grow Engineers",
                     story:"Addressing a need for space for meeting, making, and mentorship, support from the COE Dean's Fund creates a first-year learning center for engineering students. The result: design blossoming in a collaborative space, as exemplified by Christopher Scianna, E'19.",
-                    quote:"In my experience, the first year learning center is the epicenter for the design process.",
+                    quote:"In my experience, the first year learning center is the epicenter for the design process. The central theme for my cornerstone project was service learning, specifically an after school outreach program at Orchard Gardens K-8 school focused on youth engineering exposure. The FYELC soon became our home base for this project, turning it into the backdrop for weekly planning sessions with Professor Freeman where we created design challenges and discussed lesson plans.",
                     quote_attr:"Christopher Scianna, E'19",
                     video:"story_videos/FYELIC.mp4"
                 }
@@ -79,16 +83,22 @@ var data = [
                 {
                     headline:"Eat Your Coffee",
                     story:"Northeastern students Ali Kothari, DMSB'17, and Johnny Fayad, DMSB'17, have built a successful startup venture thanks to donor support and mentorship from Northeastern's robust entrepreneurial ecosystem.",
+                    theme_quote:"When I’m not out selling CoffeeBars, I’m still doing everything I can to stay involved around campus, supporting the next wave of student entrepreneurs at Northeastern.",
+                    quote_attr:"Johnny Fayad, DMSB'17",
                     video:"story_videos/EYC.mp4"
                 },
                 {
                     headline:"Opening Doors Through Scholarships",
                     story: "Two student entrepreneurs supported by two separate scholarships work together to launch one startup that will change lives.  ScholarJet is the hands-on tool that provides students with action-based scholarships.",
+                    theme_quote:"I stepped foot onto the Northeastern campus thinking that I would become a great engineer. However, because of Northeastern, I learned that I can also be an entrepreneur. Because of your gift, ScholarJet may one day change the world.",
+                    quote_attr:"Tuan Ho, E'18",
                     video:"story_videos/scholarjet.mp4"
                 },
                 {
                     headline:"Acting Locally and Globally",
                     story:"Already a leader in the Boston community, Mabel Gonzalez Nunez, DMSB'20, works with the Social Enterprise Institute to make an impact on a global scale.",
+                    theme_quote:"Thank you for instilling in me a drive to empower those who did not win the 'lottery of life.'",
+                    quote_attr:"Mabel Gonzalez Nunez, DMSB'20",
                     video:"story_videos/mabel.mp4"
                 }
             ]
@@ -98,16 +108,22 @@ var data = [
                 {
                     headline:"Vision-Driven",
                     story:"Inspired by the visionary philanthropy of Rich D'Amore and Alan McKim, Gary and Lea Anne Dunton establish the first-ever endowed, named deanship at the university.",
+                    theme_quote:"It is an amazing honor to have the opportunity to lead the D’Amore-McKim School of Business.",
+                    quote_attr:"Raj Echambadi",
                     video:"story_videos/raj.mp4"
                 },
                 {
                     haedline:"Strengthening Global Relations",
                     story:"Support for Professor Denise Garcia's work in security studies, disarmament, climate change, and international relations inspires Northeastern's most driven global scholars and leaders of tomorrow.",
+                    theme_quote:"This generosity entirely transformed my research life, which aims to be a transformative force in world politics.",
+                    quote_attr:"Denise Garcia",
                     video:"story_videos/denise.mp4"
                 },
                 {
                     headline:"The Founding Father of Entrepreneurship",
                     story:"Retired faculty Dan McCarthy mentored countles students in entrepreneurship, including Rich D'Amore and Alan McKim.  Then he paired with alum Jeff McCarthy on his own venture--in philanthropy.",
+                    theme_quote:"In business, there’s a long tradition of altruism toward the next generation.",
+                    quote_attr:"Daniel McCarthy",
                     video:"story_videos/mccarthy.mp4"
                 }
             ]
@@ -117,11 +133,15 @@ var data = [
                 {
                     headline:"Deep Dive Research",
                     story:"Gifts to Northeastern's Ocean Genome Legacy enable the world's leading scientists to uncover the ocean's deepest mysteries, and to support research that cures disease and protects the environment.",
+                    quote:"We've seen a lot of really exciting and interesting things come out of the study of the genomes of the terrestrial world. If we expand that to the extreme diversity of the marine environment, it's almost unimaginable what might come of it.",
+                    quote_attr:"Daniel Distel",
                     video:"story_videos/ocean.mp4"
                 },
                 {
                     headline:"Co-ops That Shape Careers",
                     story:"Co-ops at the George J. Kostas Research Institute for Homeland Security provide the platform upon which careers flourish.",
+                    theme_quote:"The work I did at KRI shaped my undergraduate experience. It informed my plans to work and study abroad, as well as my post-graduate professional and academic ambitions.",
+                    quote_attr:"Connor Goddard, SSH'14",
                     video:"story_videos/kostas.mp4"
                 }
             ]
@@ -138,11 +158,15 @@ var data = [
                 {
                     headline:"Paying It Forward",
                     story:"Lamar Cardinez, DMSB'14, received both the Ujima and Samuel and Nancy Altschuler Scholarships at Northeastern. Now, he and his wife, Italia, DMSB14, pay it forward by supporting the Torch Scholarship Program.",
+                    theme_quote:"I was blessed to receive scholarships during my time at Northeastern. I am forever humbled by the extreme generosity exhibited by the donors who had a direct impact on my life during and after college. This generosity is what led my wife, Italia, and I to start our own scholarship fund to help students get access to the technological tools needed for college.",
+                    quote_attr:"Lamar Cardinez, DMSB'14",
                     video:"story_videos/lamar.mp4"
                 },
                 {
                     headline:"Crossing Boundaries",
                     story:"A gift of financial aid in the School of Law branches out when student Kacy Cuenta, L'17, advises entrepreneur Abbey Titcomb, E'18, on intellectual property rights to help Titcomb launch Knightly, an integrated safety network.",
+                    theme_quote:"I wanted to pursue my law degree at a place where there was both camaraderie and opportunity for practical hands-on experience that would prepare me to practice in the real world. Working with Abbey through the IP CO-LAB was a highlight of my law school experience.",
+                    quote_attr:"Kacy Cuenta, L'17",
                     video:"story_videos/kacy.mp4"
                 },
                 {
