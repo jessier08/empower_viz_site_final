@@ -23925,7 +23925,6 @@ d3.json('./data/network.json', function (err, networkData) {
 
     // SETTING UP SEARCH
     (0, _autocomplete.Autocomplete)(networkData.nodes);
-    console.log(networkData.links);
 
     var linksG = plot.append('g').attr('class', 'links');
     var nodesG = plot.append('g').attr('class', 'nodes');
@@ -23952,6 +23951,8 @@ d3.json('./data/network.json', function (err, networkData) {
                     return d.target.x;
                 }).attr('y2', function (d) {
                     return d.target.y;
+                }).attr('opacity', function (d) {
+                    return d.highlighted ? 0.5 : 0.2;
                 });
 
                 node // .transition().duration(50)
@@ -23959,6 +23960,8 @@ d3.json('./data/network.json', function (err, networkData) {
                     return d.x;
                 }).attr('cy', function (d) {
                     return d.y;
+                }).attr('opacity', function (d) {
+                    return d.highlighted ? 1 : 0.2;
                 });
             }
         }
@@ -23966,6 +23969,17 @@ d3.json('./data/network.json', function (err, networkData) {
             simulation.alpha(0.1);
             simulation.restart();
         }
+
+        network.nodes.forEach(function (d) {
+            if (d.highlighted === undefined) {
+                d.highlighted = true;
+            }
+        });
+        network.links.forEach(function (d) {
+            if (d.highlighted === undefined) {
+                d.highlighted = true;
+            }
+        });
 
         simulation.nodes(network.nodes).on('tick', ticked).on('end', ended);
 
@@ -23984,7 +23998,11 @@ d3.json('./data/network.json', function (err, networkData) {
 
         var node = nodesG.selectAll('circle').data(network.nodes);
         node.exit().remove();
-        node = node.enter().append('circle').attr('r', 3).attr('fill', function (d) {
+        node = node.enter().append('circle').attr('r', 3).attr('cx', function (d) {
+            return d.x;
+        }).attr('cy', function (d) {
+            return d.y;
+        }).attr('fill', function (d) {
             return d.entityType === 'person' ? 'rgb(175, 51, 53)' : 'rgb(64, 64, 64)';
         }).merge(node).on('click', function (d) {
             window.location.replace('./single_node.html?id=' + d.number);
@@ -23994,21 +24012,36 @@ d3.json('./data/network.json', function (err, networkData) {
 
         filters.forEach(function (theme) {
             d3.select('#' + theme.div).on('click', function () {
-                var links = networkData.links.filter(function (d) {
-                    return d.theme && d.theme.toLowerCase() === theme.data;
+                simulation.force('link').links().forEach(function (d) {
+                    if (d.theme && d.theme.toLowerCase() === theme.data) {
+                        d.highlighted = true;
+                    } else {
+                        d.highlighted = false;
+                    }
                 });
-                var nodeIds = new Set(links.map(function (d) {
-                    return [d.source.number, d.target.number];
+
+                var nodeIds = new Set(simulation.force('link').links().map(function (d) {
+                    if (d.highlighted) {
+                        return [d.source.number, d.target.number];
+                    }
+                    return [];
                 }).reduce(function (p, c) {
                     return p.concat(c);
                 }, []));
-                var nodes = networkData.nodes.filter(function (d) {
-                    return nodeIds.has(d.number);
+
+                var nodes = simulation.nodes().map(function (d) {
+                    if (nodeIds.has(d.number)) {
+                        d.highlighted = true;
+                    } else {
+                        d.highlighted = false;
+                    }
+                    return d;
                 });
-                setTimeout(function () {
-                    ticked.count = 0;
-                    visualise({ nodes: nodes, links: links });
-                }, 0);
+
+                // setTimeout(function () {
+                //     ticked.count = 0
+                //     visualise({nodes: nodes, links: links})
+                // }, 0)
             });
         });
     }

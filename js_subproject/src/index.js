@@ -29,7 +29,6 @@ d3.json('./data/network.json', (err, networkData) => {
 
     // SETTING UP SEARCH
     Autocomplete(networkData.nodes)
-    console.log(networkData.links)
 
     const linksG = plot.append('g')
         .attr('class', 'links')
@@ -59,16 +58,29 @@ d3.json('./data/network.json', (err, networkData) => {
                     .attr('y1', function (d) { return d.source.y })
                     .attr('x2', function (d) { return d.target.x })
                     .attr('y2', function (d) { return d.target.y })
+                    .attr('opacity', d => d.highlighted ? 0.5 : 0.2)
 
                 node // .transition().duration(50)
                     .attr('cx', function (d) { return d.x })
                     .attr('cy', function (d) { return d.y })
+                    .attr('opacity', d => d.highlighted ? 1 : 0.2)
             }
         }
         function ended () {
             simulation.alpha(0.1)
             simulation.restart()
         }
+
+        network.nodes.forEach(d => {
+            if (d.highlighted === undefined) {
+                d.highlighted = true
+            }
+        })
+        network.links.forEach(d => {
+            if (d.highlighted === undefined) {
+                d.highlighted = true
+            }
+        })
 
         simulation
             .nodes(network.nodes)
@@ -99,6 +111,8 @@ d3.json('./data/network.json', (err, networkData) => {
         node = node.enter()
             .append('circle')
             .attr('r', 3)
+            .attr('cx', d => d.x)
+            .attr('cy', d => d.y)
             .attr('fill', d => d.entityType === 'person' ? 'rgb(175, 51, 53)' : 'rgb(64, 64, 64)')
             .merge(node)
             .on('click', (d) => {
@@ -117,13 +131,34 @@ d3.json('./data/network.json', (err, networkData) => {
         
         filters.forEach(theme => {
             d3.select('#' + theme.div).on('click', function () {
-                const links = networkData.links.filter(d => d.theme && d.theme.toLowerCase() === theme.data)
-                const nodeIds = new Set(links.map(d => [d.source.number, d.target.number]).reduce((p, c) => p.concat(c), []))
-                const nodes = networkData.nodes.filter(d => (nodeIds.has(d.number)))
-                setTimeout(function () {
-                    ticked.count = 0
-                    visualise({nodes: nodes, links: links})
-                }, 0)
+                simulation.force('link').links().forEach(d => {
+                    if (d.theme && d.theme.toLowerCase() === theme.data) {
+                        d.highlighted = true
+                    } else {
+                        d.highlighted = false
+                    }
+                })
+                
+                const nodeIds = new Set(simulation.force('link').links().map(d => {
+                    if (d.highlighted) {
+                        return [d.source.number, d.target.number]
+                    }
+                    return []
+                }).reduce((p, c) => p.concat(c), []))
+                
+                const nodes = simulation.nodes().map(d => {
+                    if (nodeIds.has(d.number)) {
+                        d.highlighted = true
+                    } else {
+                        d.highlighted = false
+                    }
+                    return d
+                })
+
+                // setTimeout(function () {
+                //     ticked.count = 0
+                //     visualise({nodes: nodes, links: links})
+                // }, 0)
             })
         })
     }
