@@ -1,17 +1,5 @@
 /*NU DONOR VIZ CSS*/
 @font-face{
-    font-family: "helvetica neue";
-    src: url('../fonts/HelveticaNeueLTCom-Roman.ttf');   
-}
-@font-face{
-    font-family: "helvetica neue md";
-    src: url('../fonts/HelveticaNeueLTCom-MdEx.ttf');
-}
-@font-face{
-    font-family: "helveticab bold";
-    src: url('../fonts/HelveticaNeueLTCom-XBlkCn.ttf');
-}
-@font-face{
     font-family: "eames century modern";
     src: url('../fonts/Eames-Century-Modern-Regular.WOFF');
 }
@@ -252,7 +240,7 @@ a{
 }
 #quote_attr{
     clear:both;
-    font-family:"helvetica neue";
+    font-family:"helvetica";
     font-size:1.5vh;
     color: rgb(207,10,44);
     font-style:oblique;
@@ -273,6 +261,9 @@ a{
 @media only screen and (max-width: 1440px) {
     #left_sidebar{
         position:absolute;
+    }
+    #story_visual{
+        margin-left:-3vw;
     }
 }
 #right_sidebar{
@@ -379,7 +370,7 @@ a{
     padding-top:2vh;
     display:block;
     
-    font-family: "helvetica neue";
+    font-family: "helvetica";
     font-size:1.5vh;
     line-height: 2vh;
 }
@@ -511,7 +502,7 @@ a{
         padding-top:20vh;
     }
     #landing_enter{
-        font-family: "helvetica neue";
+        font-family: "helvetica";
         font-size:2.25vh;
         font-weight:500;
         color: rgb(64,64,64);
@@ -635,7 +626,7 @@ a{
     color: rgb(207,10,44);
 }
 .mobile_quote_attr{
-    font-family:"helvetica neue";
+    font-family:"helvetica";
     font-size:1.5vh;
     font-weight:normal;
     color: rgb(207,10,44);
@@ -666,7 +657,7 @@ a{
     top:72vh;
 }
 #toggle{ 
-    font-family:"helvetica neue";
+    font-family:"helvetica";
     font-size:1.5vh;
     color: rgba(112,98,89,.4);
 }
