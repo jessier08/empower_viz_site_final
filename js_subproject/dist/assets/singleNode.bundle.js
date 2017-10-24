@@ -23937,7 +23937,7 @@ var plot = svg.append('g');
 var simulation = d3.forceSimulation().force('link', d3.forceLink().id(function (d) {
     return d.number;
 }).strength(0.1)).force('manyBody', d3.forceManyBody().strength(-40)).force('radial', d3.forceRadial(biggerCircleRadius, width / 2, height / 2).strength(1));
-
+// NonPerson358 - Person863
 d3.json('./data/network.json', function (err, data) {
     if (err) {
         console.log(err);
@@ -24101,6 +24101,7 @@ function goTwoLevelsDeep(number, network) {
         }
         return null;
     }));
+
     var level1Nodes = network.nodes.filter(function (d) {
         return level1NodeIds.has(d.number);
     });
@@ -24116,11 +24117,12 @@ function goTwoLevelsDeep(number, network) {
     var level2Links = network.links.filter(function (d) {
         return level1NodeIds.has(d.source) || level1NodeIds.has(d.target);
     });
+
     var level2NodeIds = new Set(level2Links.map(function (d) {
-        if (level1NodeIds.has(d.source)) {
-            return d.target;
-        } else if (level1NodeIds.has(d.target)) {
+        if (!level1NodeIds.has(d.source)) {
             return d.source;
+        } else if (!level1NodeIds.has(d.target)) {
+            return d.target;
         }
         return null;
     }));

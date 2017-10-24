@@ -42,7 +42,7 @@ const simulation = d3.forceSimulation()
     .force('link', d3.forceLink().id((d) => { return d.number }).strength(0.1))
     .force('manyBody', d3.forceManyBody().strength(-40))
     .force('radial', d3.forceRadial(biggerCircleRadius, width / 2, height / 2).strength(1))
-
+// NonPerson358 - Person863
 d3.json('./data/network.json', (err, data) => {
     if (err) {
         console.log(err)
@@ -239,6 +239,7 @@ function goTwoLevelsDeep (number, network) {
         }
         return null
     }))
+    
     let level1Nodes = network.nodes.filter(d => level1NodeIds.has(d.number))
     level1Nodes = level1Nodes.map((d, i) => {
         const x = d.deepExtend()
@@ -250,11 +251,12 @@ function goTwoLevelsDeep (number, network) {
     })
 
     let level2Links = network.links.filter(d => level1NodeIds.has(d.source) || level1NodeIds.has(d.target))
+    
     let level2NodeIds = new Set(level2Links.map(d => {
-        if (level1NodeIds.has(d.source)) {
-            return d.target
-        } else if (level1NodeIds.has(d.target)) {
+        if (!level1NodeIds.has(d.source)) {
             return d.source
+        } else if (!level1NodeIds.has(d.target)) {
+            return d.target
         }
         return null
     }))
