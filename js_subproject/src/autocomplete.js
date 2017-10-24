@@ -18,9 +18,9 @@ export function Autocomplete (nodes) {
             const html = results.reduce((prev, curr) => {
                 const li = `<a href="/single_node.html?id=${curr.number}">
                                 <li class="autocomplete_item">
-                                    <span id="display_name">${curr.Display_Name}</span>` +
-                                    (curr.College === '' ? '' : `, <span id="college">${curr.College}</span>`) +
-                                    (curr.Year === '' ? '' : `, <span id="year">${curr.Year}</span>`) +
+                                    <span class="single_display_name">${curr.Display_Name}</span>` +
+                                    (curr.College === '' ? '' : `, <span class="single_college">${curr.College}</span>`) +
+                                    (curr.Year === '' ? '' : `, <span class="single_year">${curr.Year}</span>`) +
                                 `</li>
                             </a>`
                 return prev + li

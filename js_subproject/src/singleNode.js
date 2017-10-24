@@ -23,8 +23,8 @@ const svg = containerDiv.append('svg')
     .attr('width', width)
     .attr('height', height)
 
-svg.append('def')
-    .append('mask')
+svg.append('defs')
+    .append('clipPath')
     .attr('id', 'mask')
     .append('circle')
     .attr('cx', width / 2)
@@ -96,6 +96,12 @@ d3.json('./data/network.json', (err, data) => {
                 .text(centralNode.Huntington100)
             d3.select('div#person_bio_text span#hunt_society')
                 .text(centralNode['Huntington Society'])
+            d3.select('span#single_year')
+                .text(centralNode.Year)
+            if (centralNode.Media && centralNode.Media !== '') {
+                d3.select('img#person_pic')
+                    .attr('src', 'imgs/person_photos/' + centralNode.Media + '.jpg')
+            }
         } else if (centralNode.entityType === 'non-person') {
             d3.select('div#entity_bio_text span#entity_bio')
                 .text(centralNode.Bio)
@@ -108,6 +114,7 @@ d3.json('./data/network.json', (err, data) => {
             d3.select('div#person_quote').style('display', 'none')
         }
         
+        // VIDEOS SHOULD BE TAKEN CARE OF HERE
         if (centralNode.Video && centralNode.Video !== '') {
             d3.select('div#video_player video source')
                 .attr('src', centralNode.Video)
@@ -144,7 +151,7 @@ d3.json('./data/network.json', (err, data) => {
         .attr('cy', height / 2)
         .attr('r', smallerCircleRadius)
         .style('fill', 'none')
-        .style('stroke', 'rgba(64, 64, 64, 0.2)')
+        .style('stroke', 'rgba(64, 64, 64, 0.05)')
         .style('stroke-width', '3')
 
     plot.append('circle')
@@ -152,7 +159,7 @@ d3.json('./data/network.json', (err, data) => {
         .attr('cy', height / 2)
         .attr('r', biggerCircleRadius)
         .style('fill', 'none')
-        .style('stroke', 'rgba(64, 64, 64, 0.2)')
+        .style('stroke', 'rgba(64, 64, 64, 0.05)')
         .style('stroke-width', '3')
 
     let link = plot.append('g')
@@ -174,7 +181,7 @@ d3.json('./data/network.json', (err, data) => {
         .attr('transform', d => `translate(${d.fx}, ${d.fy})`)
 
     node.append('circle')
-        .attr('r', d => d.level === 0 ? 25 : (d.level === 1 ? 10 : 5))
+        .attr('r', d => d.level === 0 ? 0 : (d.level === 1 ? 10 : 5))
         .attr('fill', d => d.entityType.toLowerCase().trim() === 'person' ? 'rgb(175, 51, 53)' : 'rgb(64, 64, 64)')
         .attr('cx', 0)
         .attr('cy', 0)
@@ -201,7 +208,7 @@ d3.json('./data/network.json', (err, data) => {
             .attr('y', height / 2 - 25)
             .attr('width', '50px')
             .attr('height', '50px')
-            .style('mask', 'url(#mask)')
+            .attr('clip-path', 'url(#mask)')
     }
 
     function ticked () {

@@ -22865,7 +22865,7 @@ function Autocomplete(nodes) {
         if (this.value.length >= 3) {
             var results = fuse.search(this.value);
             var html = results.reduce(function (prev, curr) {
-                var li = '<a href="/single_node.html?id=' + curr.number + '">\n                                <li class="autocomplete_item">\n                                    <span id="display_name">' + curr.Display_Name + '</span>' + (curr.College === '' ? '' : ', <span id="college">' + curr.College + '</span>') + (curr.Year === '' ? '' : ', <span id="year">' + curr.Year + '</span>') + '</li>\n                            </a>';
+                var li = '<a href="/single_node.html?id=' + curr.number + '">\n                                <li class="autocomplete_item">\n                                    <span class="single_display_name">' + curr.Display_Name + '</span>' + (curr.College === '' ? '' : ', <span class="single_college">' + curr.College + '</span>') + (curr.Year === '' ? '' : ', <span class="single_year">' + curr.Year + '</span>') + '</li>\n                            </a>';
                 return prev + li;
             }, '');
             var rect = d3.select('#search_bar').node().getBoundingClientRect();
@@ -23927,7 +23927,7 @@ var width = containerDiv.node().clientWidth;
 var height = containerDiv.node().clientHeight;
 var svg = containerDiv.append('svg').attr('width', width).attr('height', height);
 
-svg.append('def').append('mask').attr('id', 'mask').append('circle').attr('cx', width / 2).attr('cy', height / 2).attr('r', 25).style('stroke', 'none').style('fill', '#ffffff');
+svg.append('defs').append('clipPath').attr('id', 'mask').append('circle').attr('cx', width / 2).attr('cy', height / 2).attr('r', 25).style('stroke', 'none').style('fill', '#ffffff');
 var biggerCircleRadius = d3.min([height, width]) * 0.4;
 var smallerCircleRadius = biggerCircleRadius * 2 / 3;
 
@@ -23987,6 +23987,10 @@ d3.json('./data/network.json', function (err, data) {
             d3.select('div#person_bio_text span#vip').text(centralNode.VIP);
             d3.select('div#person_bio_text span#hunt_100').text(centralNode.Huntington100);
             d3.select('div#person_bio_text span#hunt_society').text(centralNode['Huntington Society']);
+            d3.select('span#single_year').text(centralNode.Year);
+            if (centralNode.Media && centralNode.Media !== '') {
+                d3.select('img#person_pic').attr('src', 'imgs/person_photos/' + centralNode.Media + '.jpg');
+            }
         } else if (centralNode.entityType === 'non-person') {
             d3.select('div#entity_bio_text span#entity_bio').text(centralNode.Bio);
         }
@@ -23997,6 +24001,7 @@ d3.json('./data/network.json', function (err, data) {
             d3.select('div#person_quote').style('display', 'none');
         }
 
+        // VIDEOS SHOULD BE TAKEN CARE OF HERE
         if (centralNode.Video && centralNode.Video !== '') {
             d3.select('div#video_player video source').attr('src', centralNode.Video);
         } else {
@@ -24023,9 +24028,9 @@ d3.json('./data/network.json', function (err, data) {
 
     simulation.force('link').links(network.links);
 
-    plot.append('circle').attr('cx', width / 2).attr('cy', height / 2).attr('r', smallerCircleRadius).style('fill', 'none').style('stroke', 'rgba(64, 64, 64, 0.2)').style('stroke-width', '3');
+    plot.append('circle').attr('cx', width / 2).attr('cy', height / 2).attr('r', smallerCircleRadius).style('fill', 'none').style('stroke', 'rgba(64, 64, 64, 0.05)').style('stroke-width', '3');
 
-    plot.append('circle').attr('cx', width / 2).attr('cy', height / 2).attr('r', biggerCircleRadius).style('fill', 'none').style('stroke', 'rgba(64, 64, 64, 0.2)').style('stroke-width', '3');
+    plot.append('circle').attr('cx', width / 2).attr('cy', height / 2).attr('r', biggerCircleRadius).style('fill', 'none').style('stroke', 'rgba(64, 64, 64, 0.05)').style('stroke-width', '3');
 
     var link = plot.append('g').attr('class', 'links').selectAll('line').data(network.links).enter().append('line').attr('stroke-width', 0.5).attr('opacity', 0.5).attr('stroke', 'grey').attr('stroke-dasharray', function (d) {
         return d.isInvolvement ? '5, 7' : null;
@@ -24036,7 +24041,7 @@ d3.json('./data/network.json', function (err, data) {
     });
 
     node.append('circle').attr('r', function (d) {
-        return d.level === 0 ? 25 : d.level === 1 ? 10 : 5;
+        return d.level === 0 ? 0 : d.level === 1 ? 10 : 5;
     }).attr('fill', function (d) {
         return d.entityType.toLowerCase().trim() === 'person' ? 'rgb(175, 51, 53)' : 'rgb(64, 64, 64)';
     }).attr('cx', 0).attr('cy', 0).on('click', function (d) {
@@ -24055,7 +24060,7 @@ d3.json('./data/network.json', function (err, data) {
         } else if (centralNode.Media !== '') {
             imageURL = './imgs/icons/' + centralNode.Media + '.png';
         }
-        svg.append('image').attr('xlink:href', imageURL).attr('x', width / 2 - 25).attr('y', height / 2 - 25).attr('width', '50px').attr('height', '50px').style('mask', 'url(#mask)');
+        svg.append('image').attr('xlink:href', imageURL).attr('x', width / 2 - 25).attr('y', height / 2 - 25).attr('width', '50px').attr('height', '50px').attr('clip-path', 'url(#mask)');
     }
 
     function ticked() {

@@ -22865,7 +22865,7 @@ function Autocomplete(nodes) {
         if (this.value.length >= 3) {
             var results = fuse.search(this.value);
             var html = results.reduce(function (prev, curr) {
-                var li = '<a href="/single_node.html?id=' + curr.number + '">\n                                <li class="autocomplete_item">\n                                    <span id="display_name">' + curr.Display_Name + '</span>' + (curr.College === '' ? '' : ', <span id="college">' + curr.College + '</span>') + (curr.Year === '' ? '' : ', <span id="year">' + curr.Year + '</span>') + '</li>\n                            </a>';
+                var li = '<a href="/single_node.html?id=' + curr.number + '">\n                                <li class="autocomplete_item">\n                                    <span class="single_display_name">' + curr.Display_Name + '</span>' + (curr.College === '' ? '' : ', <span class="single_college">' + curr.College + '</span>') + (curr.Year === '' ? '' : ', <span class="single_year">' + curr.Year + '</span>') + '</li>\n                            </a>';
                 return prev + li;
             }, '');
             var rect = d3.select('#search_bar').node().getBoundingClientRect();
@@ -23912,7 +23912,7 @@ var svg = containerDiv.append('svg').attr('width', width).attr('height', height)
 var plot = svg.append('g').attr('transform', 'translate(' + margin.left + ', ' + margin.top + ')');
 var simulation = d3.forceSimulation().force('link', d3.forceLink().id(function (d) {
     return d.number;
-}).distance(25)).force('charge', d3.forceManyBody().strength(-6)).force('center', d3.forceCenter(width / 2, height / 2)).force('collide', d3.forceCollide().radius(5)).force('x', d3.forceX().strength(0.06))
+})).force('charge', d3.forceManyBody().strength(-6)).force('center', d3.forceCenter(width / 2, height / 2)).force('collide', d3.forceCollide().radius(5)).force('x', d3.forceX().strength(0.06))
 // .force('x_', d3.forceX().strength(0.05).x(-width / 2))
 .force('y', d3.forceY().strength(0.1));
 // .force('y_', d3.forceY().strength(0.05).y(-height / 2))
