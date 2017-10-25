@@ -201,7 +201,7 @@ const data = [
                 story: 'The Howard W. Evirs, Jr., Scholarship made it possible for Lisa Mucciarone, CPS\'17, to graduate after family difficulties and financial strain put her on a non-traditional path to a degree. It also inspired another member of the Evirs family to help others pursue their goals.',
                 quote: 'I was a single mother of three, living paycheck to paycheck, determined to finish the degree I began in 2009. Thanks to the generosity of Howard and Helen Evirs, as well as other donors who support financial aid, I am proud to say that I graduated in 2017. One day, I hope to give back and help other students pursue their dreams.',
                 quote_attr: 'Lisa Mucciarone, CPS\'17',
-                videos: 'story_videos/lisa.mp4',
+                video: 'story_videos/lisa.mp4',
                 link_to_page: 'Person1566'
             }
         ]
@@ -218,6 +218,7 @@ if (theme.length > 0) {
         index = +urlParams.index
     }
     const story = theme[0].stories[index]
+    console.log(story)
     if (story.headline) {
         document.querySelector('#headline').innerHTML = story.headline
         document.querySelector('#headline').style.display = null

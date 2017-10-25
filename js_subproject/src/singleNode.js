@@ -15,6 +15,32 @@ var urlParams;
     }
 })()
 
+const videos = new Set([
+    'NonPerson20',
+    'NonPerson125',
+    'NonPerson137',
+    'NonPerson165',
+    'NonPerson172',
+    'NonPerson240',
+    'NonPerson290',
+    'NonPerson338',
+    'NonPerson366',
+    'NonPerson392',
+    'Person351',
+    'Person762',
+    'Person905',
+    'Person2217'
+])
+
+// VIDEOS SHOULD BE TAKEN CARE OF HERE
+if (videos.has(urlParams.id)) {
+    d3.select('div#video_player video source')
+        .attr('src', '/single_node_videos/' + urlParams.id + '.mp4')
+    d3.select('div#video_player video').node().load()
+} else {
+    d3.select('div#video_player').style('display', 'none')
+}
+
 const containerDiv = d3.select('#single_node_diagram')
 const margin = {top: 50, right: 50, bottom: 50, left: 50}
 const width = containerDiv.node().clientWidth
@@ -79,7 +105,6 @@ d3.json('./data/network.json', (err, data) => {
         })
 
         // FILL DETAILS
-        console.log(centralNode)
         d3.select('p#display_name').text(centralNode.Display_Name)
         if (centralNode.entityType === 'person') {
             d3.select('div#person_bio_text span#title')
@@ -105,6 +130,8 @@ d3.json('./data/network.json', (err, data) => {
         } else if (centralNode.entityType === 'non-person') {
             d3.select('div#entity_bio_text span#entity_bio')
                 .text(centralNode.Bio)
+            d3.select('img#entity_pic')
+                .attr('src', 'imgs/icons/' + centralNode.Media + '.png')
         }
 
         if (centralNode.Quote !== '') {
@@ -112,14 +139,6 @@ d3.json('./data/network.json', (err, data) => {
                 .text(centralNode.Quote)
         } else {
             d3.select('div#person_quote').style('display', 'none')
-        }
-        
-        // VIDEOS SHOULD BE TAKEN CARE OF HERE
-        if (centralNode.Video && centralNode.Video !== '') {
-            d3.select('div#video_player video source')
-                .attr('src', centralNode.Video)
-        } else {
-            d3.select('div#video_player').style('display', 'none')
         }
 
         if (centralNode.Quote === '' && (!centralNode.Video || centralNode.Video === '')) {
@@ -167,10 +186,10 @@ d3.json('./data/network.json', (err, data) => {
         .selectAll('line')
         .data(network.links)
         .enter().append('line')
-        .attr('stroke-width', 0.5)
+        .attr('stroke-width', 0.7)
         .attr('opacity', 0.5)
         .attr('stroke', 'grey')
-        .attr('stroke-dasharray', d => d.isInvolvement ? '5, 7' : null)
+        .attr('stroke-dasharray', d => d.isInvolvement ? '1, 3' : null)
 
     let node = plot.append('g')
         .attr('class', 'nodes')
@@ -178,10 +197,10 @@ d3.json('./data/network.json', (err, data) => {
         .data(network.nodes)
         .enter().append('g')
         .classed('circleNodes', true)
-        .attr('transform', d => `translate(${d.fx}, ${d.fy})`)
+        // .attr('transform', d => `translate(${d.fx}, ${d.fy})`)
 
     node.append('circle')
-        .attr('r', d => d.level === 0 ? 0 : (d.level === 1 ? 10 : 5))
+        .attr('r', d => d.level === 0 ? 24 : (d.level === 1 ? 10 : 5))
         .attr('fill', d => d.entityType.toLowerCase().trim() === 'person' ? 'rgb(175, 51, 53)' : 'rgb(64, 64, 64)')
         .attr('cx', 0)
         .attr('cy', 0)

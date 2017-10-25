@@ -22865,7 +22865,7 @@ function Autocomplete(nodes) {
         if (this.value.length >= 3) {
             var results = fuse.search(this.value);
             var html = results.reduce(function (prev, curr) {
-                var li = '<a href="/single_node.html?id=' + curr.number + '">\n                                <li class="autocomplete_item">\n                                    <span class="single_display_name">' + curr.Display_Name + '</span>' + (curr.College === '' ? '' : ', <span class="single_college">' + curr.College + '</span>') + (curr.Year === '' ? '' : ', <span class="single_year">' + curr.Year + '</span>') + '</li>\n                            </a>';
+                var li = '<a href="/single_node.html?id=' + curr.number + '">\n                                <li class="autocomplete_item">\n                                    <span class="display_name">' + curr.Display_Name + '</span>' + (curr.College === '' ? '' : ', <span class="college">' + curr.College + '</span>') + (curr.Year === '' ? '' : ', <span class="year">' + curr.Year + '</span>') + '</li>\n                            </a>';
                 return prev + li;
             }, '');
             var rect = d3.select('#search_bar').node().getBoundingClientRect();

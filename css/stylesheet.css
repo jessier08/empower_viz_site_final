@@ -308,7 +308,6 @@ a{
 }
 #story_navigation img{
     width:3.5vw;
-    padding-bottom:1.5vh;
 }
 .active_story{
     opacity:.3;
