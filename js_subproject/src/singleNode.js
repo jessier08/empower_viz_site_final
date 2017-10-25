@@ -105,7 +105,7 @@ d3.json('./data/network.json', (err, data) => {
         })
 
         // FILL DETAILS
-        d3.select('p#display_name').text(centralNode.Display_Name)
+        d3.select('p#single_display_name').text(centralNode.Display_Name)
         if (centralNode.entityType === 'person') {
             d3.select('div#person_bio_text span#title')
                 .text(centralNode.Title)
@@ -126,6 +126,9 @@ d3.json('./data/network.json', (err, data) => {
             if (centralNode.Media && centralNode.Media !== '') {
                 d3.select('img#person_pic')
                     .attr('src', 'imgs/person_photos/' + centralNode.Media + '.jpg')
+            } else {
+                d3.select('img#person_pic')
+                    .attr('src', 'imgs/icons/person_icon.png')
             }
         } else if (centralNode.entityType === 'non-person') {
             d3.select('div#entity_bio_text span#entity_bio')
