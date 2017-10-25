@@ -24004,7 +24004,7 @@ d3.json('./data/network.json', function (err, data) {
             }
         } else if (centralNode.entityType === 'non-person') {
             d3.select('div#entity_bio_text span#entity_bio').text(centralNode.Bio);
-            d3.select('img#entity_pic').attr('src', 'imgs/icons/' + centralNode.Media + '.png');
+            d3.select('img#entity_pic').attr('src', 'imgs/icons/' + centralNode.Media.toLowerCase() + '.png');
         }
 
         if (centralNode.Quote !== '') {
@@ -24062,7 +24062,7 @@ d3.json('./data/network.json', function (err, data) {
         if (centralNode.Media !== '' && centralNode.entityType === 'person') {
             imageURL = './imgs/person_photos/' + centralNode.Media + '.jpg';
         } else if (centralNode.Media !== '') {
-            imageURL = './imgs/icons/' + centralNode.Media + '.png';
+            imageURL = './imgs/icons/' + centralNode.Media.toLowerCase() + '.png';
         }
         svg.append('image').attr('xlink:href', imageURL).attr('x', width / 2 - 25).attr('y', height / 2 - 25).attr('width', '50px').attr('height', '50px').attr('clip-path', 'url(#mask)');
     }

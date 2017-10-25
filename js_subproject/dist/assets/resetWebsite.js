@@ -15,7 +15,7 @@ var inactivityTime = function () {
         t = setTimeout(function () {
             window.location.replace('/')
         }, 120000)
-        // 1000 milisec = 1 sec, so this is 3 minutes
+        // 1000 milisec = 1 sec, so this is 2 minutes
     }
 };
 inactivityTime()

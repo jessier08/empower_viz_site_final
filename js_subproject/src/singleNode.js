@@ -134,7 +134,7 @@ d3.json('./data/network.json', (err, data) => {
             d3.select('div#entity_bio_text span#entity_bio')
                 .text(centralNode.Bio)
             d3.select('img#entity_pic')
-                .attr('src', 'imgs/icons/' + centralNode.Media + '.png')
+                .attr('src', 'imgs/icons/' + centralNode.Media.toLowerCase() + '.png')
         }
 
         if (centralNode.Quote !== '') {
@@ -222,7 +222,7 @@ d3.json('./data/network.json', (err, data) => {
         if (centralNode.Media !== '' && centralNode.entityType === 'person') {
             imageURL = './imgs/person_photos/' + centralNode.Media + '.jpg'
         } else if (centralNode.Media !== '') {
-            imageURL = './imgs/icons/' + centralNode.Media + '.png'
+            imageURL = './imgs/icons/' + centralNode.Media.toLowerCase() + '.png'
         }
         svg.append('image')
             .attr('xlink:href', imageURL)
