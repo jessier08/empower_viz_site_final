@@ -15,7 +15,7 @@
     font-family: "eames century modern bold";
     src: url('../fonts/Eames-Century-Modern-Bold.WOFF');
 }
-
+ 
 body{
     margin: 0 auto;
 }
@@ -199,7 +199,8 @@ a{
 #left_sidebar{
     height:92vh;
     width:28vw;
-    float:left; 
+    float:left;
+    position:fixed;
 }
 .fadeIn{
     opacity: 0;
@@ -215,7 +216,7 @@ a{
     padding-left:2.5vw;
     padding-right:2.5vw;
     font-family:"Helvetica";
-    font-size:3.5vh;
+    font-size:4vh;
     font-weight:bold;
 }
 #story{
@@ -257,7 +258,11 @@ a{
     height:92vh;
     width:56vw;
     float:left;
+    position:fixed;
+    padding-left:26vw;
+    z-index: 10;
 }
+/*
 @media only screen and (max-width: 1440px) {
     #left_sidebar{
         position:absolute;
@@ -266,11 +271,13 @@ a{
         margin-left:-3vw;
     }
 }
+*/
 #right_sidebar{
     height:92vh;
     width:15vw;
     float:left;
-    position:relative;
+    position:fixed;
+    padding-left:84vw;
 }
 #theme_nav_direction{
     font-family: "eames century modern";
@@ -322,15 +329,9 @@ a{
     width:15vw;
     height:92vh;
     float:left;
+    position:fixed;
 }
-@media only screen and (max-width: 1440px) {
-    #legend_sidebar{
-        position:absolute;
-    }
-    #single_node_diagram{
-        margin-left:-15vw;
-    }
-}
+
 #node_legend{
     width:7vw;
     padding-left:5vw;
@@ -349,15 +350,20 @@ a{
 }
 
 #single_node_diagram{
-    width:52vw;
-    height:83vh;
+    width:55vw;
+    height:90vh;
     float:left;
-    margin-top:-2vh;
+    padding-left:12vw;
+    position:fixed;
+    margin-left:-10vw;
+    z-index: 10;
 }
 #info_sidebar{
-    width:30vw;
+    width:35vw;
     float:left;
-    position: relative;
+    padding-left:65vw;
+    padding-top:2vh;
+    position: fixed;
 }
 #bio{
     display:block;
@@ -397,7 +403,7 @@ a{
 }
 
 #profile_pic{
-    padding-right:2vw;
+    padding-right:4vw;
     float:right
 }
 #person_pic{
@@ -426,7 +432,7 @@ a{
     padding-right:2.5vw;
 }
 #video{
-    width:27vw;
+    width:32vw;
     padding-top:10vh;
 }
 
@@ -463,7 +469,7 @@ a{
     font-weight:400;
     color: rgb(64,64,64);
     padding-top:10vh;
-    padding-left:50vw;
+    padding-left:52vw;
     padding-right:15vw;
     line-height:3.5vh;
 }
@@ -693,7 +699,8 @@ a{
 #single_display_name{
     font-family:"helvetica";
     font-weight:bold;
-    font-size:3vh;
+    font-size:3.5vh;
+    padding-right:3vw;
 }
 #display_name, #college, #year{
     font-family:"helvetica";
@@ -704,8 +711,12 @@ a{
     font-size:1.5vh;
 }
 #story_list img{
+    margin-bottom:2vh;
     border-radius:50%;
 }
 #link_to_theme{
     text-decoration: none;
+}
+#search_autocomplete{
+    font-family:"helvetica";
 }
